@@ -14,7 +14,375 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      career_path_skills: {
+        Row: {
+          career_path_id: string
+          created_at: string
+          id: string
+          importance_level: number | null
+          skill_id: string
+        }
+        Insert: {
+          career_path_id: string
+          created_at?: string
+          id?: string
+          importance_level?: number | null
+          skill_id: string
+        }
+        Update: {
+          career_path_id?: string
+          created_at?: string
+          id?: string
+          importance_level?: number | null
+          skill_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "career_path_skills_career_path_id_fkey"
+            columns: ["career_path_id"]
+            isOneToOne: false
+            referencedRelation: "career_paths"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "career_path_skills_skill_id_fkey"
+            columns: ["skill_id"]
+            isOneToOne: false
+            referencedRelation: "skills"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      career_paths: {
+        Row: {
+          created_at: string
+          description: string | null
+          difficulty_level: string | null
+          estimated_duration: string | null
+          growth_outlook: string | null
+          id: string
+          overview: string | null
+          salary_range: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          difficulty_level?: string | null
+          estimated_duration?: string | null
+          growth_outlook?: string | null
+          id?: string
+          overview?: string | null
+          salary_range?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          difficulty_level?: string | null
+          estimated_duration?: string | null
+          growth_outlook?: string | null
+          id?: string
+          overview?: string | null
+          salary_range?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      completed_projects: {
+        Row: {
+          completed_at: string
+          demo_url: string | null
+          github_url: string | null
+          id: string
+          notes: string | null
+          project_id: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string
+          demo_url?: string | null
+          github_url?: string | null
+          id?: string
+          notes?: string | null
+          project_id: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string
+          demo_url?: string | null
+          github_url?: string | null
+          id?: string
+          notes?: string | null
+          project_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "completed_projects_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "completed_projects_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          current_level: string | null
+          email: string | null
+          full_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          current_level?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          current_level?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      project_skills: {
+        Row: {
+          created_at: string
+          id: string
+          project_id: string
+          skill_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          project_id: string
+          skill_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          project_id?: string
+          skill_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_skills_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "project_skills_skill_id_fkey"
+            columns: ["skill_id"]
+            isOneToOne: false
+            referencedRelation: "skills"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          created_at: string
+          demo_url: string | null
+          description: string | null
+          difficulty_level: string | null
+          estimated_hours: number | null
+          github_url: string | null
+          id: string
+          tech_stack: string[] | null
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          demo_url?: string | null
+          description?: string | null
+          difficulty_level?: string | null
+          estimated_hours?: number | null
+          github_url?: string | null
+          id?: string
+          tech_stack?: string[] | null
+          title: string
+        }
+        Update: {
+          created_at?: string
+          demo_url?: string | null
+          description?: string | null
+          difficulty_level?: string | null
+          estimated_hours?: number | null
+          github_url?: string | null
+          id?: string
+          tech_stack?: string[] | null
+          title?: string
+        }
+        Relationships: []
+      }
+      resources: {
+        Row: {
+          created_at: string
+          description: string | null
+          difficulty_level: string | null
+          estimated_duration: string | null
+          id: string
+          title: string
+          type: string | null
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          difficulty_level?: string | null
+          estimated_duration?: string | null
+          id?: string
+          title: string
+          type?: string | null
+          url: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          difficulty_level?: string | null
+          estimated_duration?: string | null
+          id?: string
+          title?: string
+          type?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
+      skills: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      user_progress: {
+        Row: {
+          career_path_id: string
+          id: string
+          last_updated: string
+          progress_percentage: number | null
+          started_at: string
+          user_id: string
+        }
+        Insert: {
+          career_path_id: string
+          id?: string
+          last_updated?: string
+          progress_percentage?: number | null
+          started_at?: string
+          user_id: string
+        }
+        Update: {
+          career_path_id?: string
+          id?: string
+          last_updated?: string
+          progress_percentage?: number | null
+          started_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_progress_career_path_id_fkey"
+            columns: ["career_path_id"]
+            isOneToOne: false
+            referencedRelation: "career_paths"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_progress_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
+      user_skills: {
+        Row: {
+          created_at: string
+          id: string
+          proficiency_level: number | null
+          skill_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          proficiency_level?: number | null
+          skill_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          proficiency_level?: number | null
+          skill_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_skills_skill_id_fkey"
+            columns: ["skill_id"]
+            isOneToOne: false
+            referencedRelation: "skills"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_skills_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
